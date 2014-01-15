@@ -17,10 +17,10 @@ var Actor = function() {
   this.bot.addListener("message", this.verifyQuestion);
   this.bot.addListener("error", this.logError);
 
-  this.advice = 'Dont got one yet :(';
+  this.advice = 'Advice is being generated... :(';
   this.adviceTime = utc();
 
-  this.price = 'Dont know yet :(';
+  this.price = 'Waiting for update... :(';
   this.priceTime = utc();
 
   this.commands = {
@@ -71,7 +71,7 @@ Actor.prototype.emitAdvice = function() {
     '/',
     config.EMA.short,
     ' at ',
-    config.EMA.interval,
+    config.tradingAdvisor.candleSize,
     ' minute candles, is:\n',
     this.advice,
     ' ',
@@ -88,7 +88,7 @@ Actor.prototype.emitAdvice = function() {
 Actor.prototype.emitPrice = function() {
 
   var message = [
-    'Current price at ',
+    'Price currently at ',
     config.watch.exchange,
     ' ',
     config.watch.currency,
